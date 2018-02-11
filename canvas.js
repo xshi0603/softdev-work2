@@ -2,8 +2,12 @@ var c = document.getElementById("board");
 var ctx = c.getContext("2d");
 
 var sbutton = document.getElementById("sbutton");
+
 var ebutton = document.getElementById("ebutton");
+var cebutton = document.getElementById("cebutton");
+
 var dbutton = document.getElementById("dbutton");
+var cdbutton = document.getElementById("cdbutton");
 
 var expanding = true;
 var requestID = 0;
@@ -15,6 +19,15 @@ sbutton.addEventListener('click', function() {
     });
 
 var radius = 1;
+
+var restart1 = function() {
+
+    window.cancelAnimationFrame( requestID );
+    radius = 1;
+    expanding = true;
+    animate();
+
+};
 
 var animate = function() {
 
@@ -53,14 +66,23 @@ var animate = function() {
     requestID = window.requestAnimationFrame( animate );
 };
 
-var x = 254;
-var y = 300;
+var height1 = 20;
+var width1 = 30;
+
+var x = Math.floor(Math.random() * (500-width1));
+var y = Math.floor(Math.random() * (500-height1));
 
 var vx = 1;
 var vy = 1;
 
-var height1 = 20;
-var width1 = 30;
+var restart2 = function() {
+
+    window.cancelAnimationFrame( requestID );
+    x = Math.floor(Math.random() * (500-width1));
+    y = Math.floor(Math.random() * (500-height1));    
+    animate2();
+
+};
 
 var animate2 = function() {
 
@@ -97,5 +119,7 @@ var animate2 = function() {
 
 
 
-ebutton.addEventListener('click', animate);
-dbutton.addEventListener('click', animate2);
+ebutton.addEventListener('click', restart1);
+cebutton.addEventListener('click', animate);
+dbutton.addEventListener('click', restart2);
+cdbutton.addEventListener('click', animate2);
